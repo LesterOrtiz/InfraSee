@@ -28,7 +28,8 @@
     "mongoose": "^8.5.3",
     "nodemailer": "^6.9.15",
     "otp-generator": "^4.0.1",
-    "react-day-picker": "^8.9.1"
+    "react-day-picker": "^8.9.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

@@ -83,7 +83,7 @@ export function ModReportDataTableRowActions({ row }) {
             onClick={() => setArchiveDialogOpen(true)}
           >
             <ArchiveIcon size={14} />
-            Archive
+            Hide
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

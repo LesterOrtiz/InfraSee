@@ -8,9 +8,9 @@ export function ConfirmRestoreDialog({ isOpen, onClose, onConfirm }) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-sm">
         <DialogHeader>
-          <DialogTitle>Confirm Restore</DialogTitle>
+          <DialogTitle>Unhide Report</DialogTitle>
           <DialogDescription>
-            Are you sure you want to restore this report?
+            Are you sure you want to unhide this report?
           </DialogDescription>
           <div className="flex justify-end pt-2">
             <Button variant="outline" onClick={onClose} className="mr-2">

@@ -8,9 +8,9 @@ export function ConfirmArchiveDialog({ isOpen, onClose, onConfirm }) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-sm">
         <DialogHeader>
-          <DialogTitle>Confirm Archive</DialogTitle>
+          <DialogTitle>Hide Report</DialogTitle>
           <DialogDescription>
-            Are you sure you want to archive this report?
+            Are you sure you want to hide this report?
           </DialogDescription>
           <div className="flex justify-end pt-2">
             <Button variant="outline" onClick={onClose} className="mr-2">

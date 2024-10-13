@@ -59,6 +59,7 @@ const ModeratorDashboardScreen = () => {
     try {
       const data = await fetchReports();
       setReports(data);
+      console.log(reports);
     } catch (error) {
       console.error("Failed to fetch reports", error);
     } finally {
@@ -98,10 +99,11 @@ const ModeratorDashboardScreen = () => {
     }
   };
 
-  const goToReportsTab = () => {
-    setActiveTab("reports");
+  const goToUnassignedTab = () => {
+    setActiveTab("unassigned");
   };
 
+  console.log(reports);
   return (
     <HelmetProvider>
       <div>
@@ -156,9 +158,11 @@ const ModeratorDashboardScreen = () => {
             <div className="flex items-center gap-2">
               <TabsList className="h-auto">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="unassigned">Unassigned</TabsTrigger>
                 <TabsTrigger value="reports">Reports</TabsTrigger>
-                <TabsTrigger value="archives">Archives</TabsTrigger>
-                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                {/* Change archive to hidden */}
+                <TabsTrigger value="archives">Hidden Reports</TabsTrigger>
+                {/* <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
               </TabsList>
               {/* Refresh Icon */}
               <TooltipProvider>
@@ -185,13 +189,29 @@ const ModeratorDashboardScreen = () => {
             <TabsContent value="overview" className="h-[calc(100vh-11rem)]">
               {loadingReports ? (
                 <div className="flex justify-center items-center h-full">
-                  <Spinner size="large"/>
+                  <Spinner size="large" />
                 </div>
               ) : (
                 <Overview
-                  goToReportsTab={goToReportsTab}
-                  data={reports}
+                  goToUnassignedTab={goToUnassignedTab}
+                  dataReports={reports}
+                  unassignedData={reports.filter(
+                    (report) => report.report_status.stat_name === "Unassigned"
+                  )}
                   userInfo={userInfo}
+                />
+              )}
+            </TabsContent>
+            <TabsContent value="unassigned" className="h-[calc(100vh-11rem)]">
+              {loadingReports ? (
+                <SkeletonTable columns={columnsModReports} /> // Use the SkeletonTable here
+              ) : (
+                <Reports
+                  data={reports.filter(
+                    (report) => report.report_status.stat_name === "Unassigned"
+                  )}
+                  columns={columnsModReports}
+                  activeTab={activeTab}
                 />
               )}
             </TabsContent>
@@ -200,7 +220,9 @@ const ModeratorDashboardScreen = () => {
                 <SkeletonTable columns={columnsModReports} /> // Use the SkeletonTable here
               ) : (
                 <Reports
-                  data={reports}
+                  data={reports.filter(
+                    (report) => report.report_status.stat_name !== "Unassigned"
+                  )}
                   columns={columnsModReports}
                   activeTab={activeTab}
                 />

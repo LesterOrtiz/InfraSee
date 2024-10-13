@@ -88,15 +88,15 @@ export function ModArchiveDataTableRowActions({ row }) {
             className="flex gap-2"
           >
             <ArchiveRestore size={14} />
-            Restore
+            Unhide
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
+          {/* <DropdownMenuSeparator /> */}
+          {/* <DropdownMenuItem
             className="text-red-500 flex gap-2"
             onClick={() => setDeleteDialogOpen(true)}
           >
             <Trash2 size={14} /> Delete
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
 
